@@ -21,7 +21,7 @@ public class EmployeeService {
         return employeeRepository.findAll();
     }
 
-    public Employee findById(String employeeId) {
+    public Employee findById(Integer employeeId) {
         return employeeRepository.findById(employeeId);
     }
 
@@ -33,11 +33,11 @@ public class EmployeeService {
         return employeeRepository.findByGender(gender);
     }
 
-    public Employee update(String employeeId, Employee employee) {
+    public Employee update(Integer employeeId, Employee employee) {
         return employeeRepository.update(employeeId, employee);
     }
 
-    public Employee delete(String employeeId) {
+    public Employee delete(Integer employeeId) {
         return employeeRepository.delete(employeeId);
     }
 

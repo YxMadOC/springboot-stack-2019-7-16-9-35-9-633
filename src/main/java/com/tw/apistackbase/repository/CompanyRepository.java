@@ -4,32 +4,31 @@ import com.tw.apistackbase.model.Company;
 import com.tw.apistackbase.model.Employee;
 import org.springframework.stereotype.Repository;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Repository
 public class CompanyRepository {
 
-    private static Map<String, Company> companies = new HashMap<>();
+    private static Map<Integer, Company> companies = new HashMap<>();
+    private static int currentIndex = 2;
 
-    static {
-        companies.put("OOCL", new Company("OOCL", 400,
-                new Employee(UUID.randomUUID().toString(), "CAYDE", 20, "Male", 15000),
-                new Employee(UUID.randomUUID().toString(), "PENNY", 20, "Male", 15000),
-                new Employee(UUID.randomUUID().toString(), "REET", 20, "Male", 15000),
-                new Employee(UUID.randomUUID().toString(), "WAYLON", 20, "Male", 15000)
-        ));
+    {
+        companies.put(1, new Company(1, "OOCL"));
     }
 
     public List<Company> findAll() {
         return new ArrayList<>(companies.values());
     }
 
-    public Company findByName(String companyName) {
-        return companies.get(companyName);
+    public Company findByName(Integer companyId) {
+        return companies.get(companyId);
     }
 
-    public List<Employee> findEmployeesByCompanyName(String companyName) {
-        return companies.get(companyName).getEmployees();
+    public List<Employee> findEmployeesByCompanyName(Integer companyId) {
+        return companies.get(companyId).getEmployees();
     }
 
     public List<Company> findByPage(Integer page, Integer pageSize) {
@@ -39,17 +38,19 @@ public class CompanyRepository {
     }
 
     public Company save(Company company) {
-        return companies.put(company.getCompanyName(), company);
+        company.setCompanyId(currentIndex);
+        companies.put(currentIndex++, company);
+        return companies.get(company.getCompanyId());
     }
 
-    public Company update(String companyName, Company company) {
-        return companies.put(companyName, company);
+    public Company update(Integer companyId, Company company) {
+        return companies.put(companyId, company);
     }
 
-    public Company deleteAllEmployee(String companyName) {
-        Company company = companies.get(companyName);
+    public Company deleteAllEmployee(Integer companyId) {
+        Company company = companies.get(companyId);
         company.getEmployees().clear();
-        return companies.put(companyName, company);
+        return companies.put(companyId, company);
     }
 
 }

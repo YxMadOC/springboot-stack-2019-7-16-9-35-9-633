@@ -19,16 +19,16 @@ public class EmployeeController {
     }
 
     @GetMapping("/employees/{employeeId}")
-    public Employee findById(@PathVariable String employeeId) {
+    public Employee findById(@PathVariable Integer employeeId) {
         return employeeService.findById(employeeId);
     }
 
-    @GetMapping("/employees")
+    @GetMapping(value = "/employees", params = {"page", "pageSize"})
     public List<Employee> findByPage(@RequestParam Integer page, @RequestParam Integer pageSize) {
         return employeeService.findByPage(page, pageSize);
     }
 
-    @GetMapping("/employees")
+    @GetMapping(value = "/employees", params = {"gender"})
     public List<Employee> findByGender(@RequestParam String gender) {
         return employeeService.findByGender(gender);
     }
@@ -39,12 +39,12 @@ public class EmployeeController {
     }
 
     @PutMapping("/employees/{employeeId}")
-    public Employee update(@PathVariable String employeeId, @RequestBody Employee employee) {
+    public Employee update(@PathVariable Integer employeeId, @RequestBody Employee employee) {
         return employeeService.update(employeeId, employee);
     }
 
     @DeleteMapping("/employees/{employeeId}")
-    public Employee delete(@PathVariable String employeeId) {
+    public Employee delete(@PathVariable Integer employeeId) {
         return employeeService.delete(employeeId);
     }
 

@@ -18,12 +18,12 @@ public class CompanyService {
         return companyRepository.findAll();
     }
 
-    public Company findByName(String companyName) {
-        return companyRepository.findByName(companyName);
+    public Company findById(Integer companyId) {
+        return companyRepository.findByName(companyId);
     }
 
-    public List<Employee> findEmployeesByCompanyName(String companyName) {
-        return companyRepository.findEmployeesByCompanyName(companyName);
+    public List<Employee> findEmployeesByCompanyId(Integer companyId) {
+        return companyRepository.findEmployeesByCompanyName(companyId);
     }
 
     public List<Company> findByPage(Integer page, Integer pageSize) {
@@ -34,12 +34,12 @@ public class CompanyService {
         return companyRepository.save(company);
     }
 
-    public Company update(String companyName, Company company) {
-        return companyRepository.update(companyName, company);
+    public Company update(Integer companyId, Company company) {
+        return companyRepository.update(companyId, company);
     }
 
-    public Company deleteAllEmployee(String companyName) {
-        return companyRepository.deleteAllEmployee(companyName);
+    public Company deleteAllEmployee(Integer companyId) {
+        return companyRepository.deleteAllEmployee(companyId);
     }
 
 }

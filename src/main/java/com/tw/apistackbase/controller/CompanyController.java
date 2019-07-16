@@ -19,14 +19,14 @@ public class CompanyController {
         return companyService.findAll();
     }
 
-    @GetMapping("/companies/{companyName}")
-    public Company findByName(@PathVariable String companyName) {
-        return companyService.findByName(companyName);
+    @GetMapping("/companies/{companyId}")
+    public Company findById(@PathVariable Integer companyId) {
+        return companyService.findById(companyId);
     }
 
-    @GetMapping(value = "/companies/{companyName}/employees")
-    public List<Employee> findEmployeesByCompanyName(@PathVariable String companyName) {
-        return companyService.findEmployeesByCompanyName(companyName);
+    @GetMapping(value = "/companies/{companyId}/employees")
+    public List<Employee> findEmployeesByCompanyName(@PathVariable Integer companyId) {
+        return companyService.findEmployeesByCompanyId(companyId);
     }
 
     @GetMapping(value = "/companies", params = {"page", "pageSize"})
@@ -35,18 +35,18 @@ public class CompanyController {
     }
 
     @PostMapping("/companies")
-    public Company save(Company company) {
+    public Company save(@RequestBody Company company) {
         return companyService.save(company);
     }
 
-    @PutMapping("/companies")
-    public Company update(String companyName, Company company) {
-        return companyService.update(companyName, company);
+    @PutMapping("/companies/{companyId}")
+    public Company update(@PathVariable Integer companyId, @RequestBody Company company) {
+        return companyService.update(companyId, company);
     }
 
-    @DeleteMapping("/companies")
-    public Company deleteAllEmployee(String companyName) {
-        return companyService.deleteAllEmployee(companyName);
+    @DeleteMapping("/companies/{companyId}/employees")
+    public Company deleteAllEmployee(@PathVariable Integer companyId) {
+        return companyService.deleteAllEmployee(companyId);
     }
 
 }

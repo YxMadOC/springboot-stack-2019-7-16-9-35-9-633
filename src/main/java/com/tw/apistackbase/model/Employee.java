@@ -1,30 +1,37 @@
 package com.tw.apistackbase.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Employee {
 
-    private String id;
+    private static final List<Employee> employeeTable = new ArrayList<>();
+    private Integer employeeId;
     private String name;
     private Integer age;
     private String gender;
     private Integer salary;
+    private Integer companyId;
 
     public Employee() {
     }
 
-    public Employee(String id, String name, Integer age, String gender, Integer salary) {
-        this.id = id;
+    public Employee(Integer employeeId, Integer companyId, String name, Integer age, String gender, Integer salary) {
+        this.employeeId = employeeId;
+        this.companyId = companyId;
         this.name = name;
         this.age = age;
         this.gender = gender;
         this.salary = salary;
+        employeeTable.add(this);
     }
 
-    public String getId() {
-        return id;
+    public static List<Employee> getEmployeeTable() {
+        return employeeTable;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public Integer getEmployeeId() {
+        return employeeId;
     }
 
     public String getName() {
@@ -57,5 +64,17 @@ public class Employee {
 
     public void setSalary(Integer salary) {
         this.salary = salary;
+    }
+
+    public void setEmployeeId(Integer employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public Integer getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Integer companyId) {
+        this.companyId = companyId;
     }
 }

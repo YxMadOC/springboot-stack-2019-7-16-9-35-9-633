@@ -1,22 +1,32 @@
 package com.tw.apistackbase.model;
 
+import com.tw.apistackbase.repository.EmployeeRepository;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Company {
 
+    private Integer companyId;
     private String companyName;
     private Integer employeesNumber;
-    private List<Employee> employees = new ArrayList<>();
+    private List<Employee> employees;
 
     public Company() {
     }
 
-    public Company(String companyName, Integer employeesNumber, Employee... employees) {
+    public Company(Integer companyId, String companyName) {
+        this.companyId = companyId;
         this.companyName = companyName;
-        this.employeesNumber = employeesNumber;
-        this.employees.addAll(Arrays.asList(employees));
+    }
+
+    public Integer getCompanyId() {
+        return companyId;
+    }
+
+    public void setCompanyId(Integer companyId) {
+        this.companyId = companyId;
     }
 
     public String getCompanyName() {
@@ -28,18 +38,11 @@ public class Company {
     }
 
     public Integer getEmployeesNumber() {
-        return employeesNumber;
-    }
-
-    public void setEmployeesNumber(Integer employeesNumber) {
-        this.employeesNumber = employeesNumber;
+        return (int) new ArrayList<>(EmployeeRepository.getEmployees().values()).stream().filter(employee -> this.companyId.equals(employee.getCompanyId())).count();
     }
 
     public List<Employee> getEmployees() {
-        return employees;
+        return new ArrayList<>(EmployeeRepository.getEmployees().values()).stream().filter(employee -> this.companyId.equals(employee.getCompanyId())).collect(Collectors.toList());
     }
 
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
-    }
 }
