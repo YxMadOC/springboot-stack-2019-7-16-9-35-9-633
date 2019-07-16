@@ -44,7 +44,9 @@ public class CompanyRepository {
     }
 
     public Company update(Integer companyId, Company company) {
-        return companies.put(companyId, company);
+        company.setCompanyId(companyId);
+        companies.put(companyId, company);
+        return companies.get(companyId);
     }
 
     public Company deleteAllEmployee(Integer companyId) {

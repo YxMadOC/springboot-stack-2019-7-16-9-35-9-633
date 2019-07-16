@@ -49,7 +49,8 @@ public class EmployeeRepository {
 
     public Employee update(Integer employeeId, Employee employee) {
         employee.setEmployeeId(employeeId);
-        return employees.put(employeeId, employee);
+        employees.put(employeeId, employee);
+        return employees.get(employeeId);
     }
 
     public Employee delete(Integer employeeId) {
