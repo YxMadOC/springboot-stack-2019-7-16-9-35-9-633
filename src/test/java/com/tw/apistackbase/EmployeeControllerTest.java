@@ -37,7 +37,7 @@ class EmployeeControllerTest {
     private EmployeeService employeeService;
 
     @Test
-    void should_return_all_company() throws Exception {
+    void should_return_all_employees() throws Exception {
         Employee employee = new Employee(1, 1, "Cayde", 22, "Male", 20000);
         Employee employee1 = new Employee(2, 1, "Kimr", 22, "Male", 20000);
         when(employeeService.findAll()).thenReturn(Arrays.asList(employee, employee1));
@@ -83,7 +83,7 @@ class EmployeeControllerTest {
     }
 
     @Test
-    void should_return_company_after_saving_company() throws Exception {
+    void should_return_employee_after_saving_employee() throws Exception {
         Employee employee = new Employee(1, 1, "Cayde", 22, "Male", 20000);
         when(employeeService.save(ArgumentMatchers.any())).thenReturn(employee);
 
@@ -93,7 +93,7 @@ class EmployeeControllerTest {
     }
 
     @Test
-    void should_return_company_after_updating_company() throws Exception {
+    void should_return_employee_after_updating_employee() throws Exception {
         Employee employee = new Employee(1, 1, "Cayde", 22, "Male", 20000);
         when(employeeService.update(anyInt(), ArgumentMatchers.any())).thenReturn(employee);
 
